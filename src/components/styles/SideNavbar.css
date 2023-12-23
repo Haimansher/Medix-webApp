@@ -1,0 +1,126 @@
+/* SideNavbar.css */
+body {
+    margin: 0;
+  }
+  
+  .wrapper {
+    display: flex;
+    min-height: 100vh;
+  }
+  
+  #sidebar {
+    width: 300px; /* Increased width */
+    background: #172d63;
+    color: #fff;
+    transition: all 0.3s;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center the items horizontally */
+    padding-top: 20px; /* Added padding to the top */
+  }
+  
+  #sidebar a {
+    text-decoration: none;
+    color: #fff;
+  }
+  
+  #sidebar a:hover {
+    background-color: #000; /* Hover background color */
+  }
+  
+  #content {
+    flex-grow: 1;
+    padding: 15px;
+    background-color: #fff;
+  }
+  
+  .logo {
+    max-width: 100%;
+    border-radius: 50%; /* Create a circular shape */
+    border: 2px solid #fff; /* White border */
+    overflow: hidden;
+  }
+  
+  .top-right-buttons {
+    margin-top: 10px; /* Add margin between Connect and Login/Signup buttons */
+  }
+  
+  .manufacturer-container {
+    margin-top: 20px;
+  }
+  
+  /* ... (previous styles) */
+        
+  .sidebar-header {
+    padding: 20px;
+  }
+  
+  .logo {
+    max-width: 100%;
+  }
+  
+  .list-unstyled {
+    padding: 20px;
+  }
+  
+  .list-unstyled li a {
+    color: #fff;
+  }
+  
+  .toggle-button {
+    position: fixed;
+    top: 10px;
+    left: 10px;
+    z-index: 1000;
+  }
+  
+  .top-right-buttons {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+  }
+  
+  .manufacturer-container {
+    background-color: #fff; /* White background for the Manufacturer component */
+    padding: 15px;
+    margin-top: 20px;
+  }
+
+  /* ... (previous styles) */
+
+.sidebar-header {
+    padding: 20px;
+    cursor: pointer; /* Add cursor pointer to indicate it's clickable */
+  }
+  
+  .logo.toggle-open {
+    transform: rotate(180deg); /* Rotate the logo when the sidebar is open */
+  }
+
+  /* SideNavbar.css */
+body {
+    background-color: #001f3f; /* Dark blue background for the whole page */
+  }
+  
+  .wrapper {
+    display: flex;
+    height: 100vh;
+    background-color: #172d63; /* Background color for the sidebar and top elements */
+  }
+  
+  #sidebar {
+    min-width: 250px;
+    max-width: 250px;
+    background: #172d63; /* Sidebar background color */
+    color: #fff;
+    transition: all 0.3s;
+  }
+  
+  #content {
+    width: 100%;
+    padding: 15px;
+    background-color: #172d63; /* Top element background color */
+  }
+  
+  /* ... (previous styles) */
+  
