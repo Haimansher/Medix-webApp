@@ -5,7 +5,7 @@ import './styles/SideNavbar.css'; // Create a separate CSS file for styling
 import Manufacturer from './Manufacturer';
 import logo from './images/medixLogo.jpeg';
 import Connect from './ConnectButton';
-import { moralisProvider } from 'react-moralis';
+import { MoralisProvider } from 'react-moralis';
 
 const SideNavbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -46,9 +46,9 @@ const SideNavbar = () => {
         <div className="top-right-container">
           <div className="top-right-buttons">
             {/* ?\<button className="btn btn-light connect-button">Connect</button> */}
-            <moralisProvider initializeOnMount={false}>
+            <MoralisProvider initializeOnMount={false}>
               <Connect/>
-            </moralisProvider>
+            </MoralisProvider>
             <button className="btn btn-light login-signup-button">Login/Signup</button>
           </div>
 
