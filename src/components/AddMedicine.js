@@ -21,8 +21,6 @@ const medixAddress = chainId in contractAddress ? contractAddress[chainId][0] : 
 
 const dispatch = useNotification()
 
-// const args = [medicineName, cost, MDate, EDate, "Karachi"]
-
 const {
     runContractFunction: addMedicine,
     // isLoading,
@@ -32,7 +30,7 @@ const {
     contractAddress: medixAddress,
     functionName: "addMedicine",
     params: {
-      _id: manufacturer,
+      _id: "0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266",
       _name: medicineName,
       _cost: cost,
       _m_date: MDate,
@@ -61,8 +59,10 @@ const {
 })
 
 async function getOnChain() {
-  const _manufacturer = (await getManufacturer()).toString()
-  setManufacturer(_manufacturer)
+  const _manufacturer = await getManufacturer()
+  if(_manufacturer){
+    setManufacturer(_manufacturer)
+  }
   console.log(manufacturer)
 
   const name = (await checkVendor(manufacturer))
