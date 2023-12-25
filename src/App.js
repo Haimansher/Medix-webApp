@@ -5,6 +5,7 @@ import { NotificationProvider } from 'web3uikit'
 import SideNavbar from './components/SideNavbar';
 import Manufacturer from './components/Manufacturer';
 import AddMedicine from './components/AddMedicine';
+import SupplyChain from './components/SupplyChain';
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
       <SideNavbar />
       {/* <Manufacturer /> */}
       <AddMedicine />
+      <SupplyChain />
     </NotificationProvider>
     </MoralisProvider>
     </>

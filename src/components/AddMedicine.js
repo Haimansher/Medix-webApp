@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useMoralis, useWeb3Contract } from 'react-moralis';
 import { contractAddress, abi } from '../constants/index'
 import { useNotification } from 'web3uikit';
@@ -10,6 +10,8 @@ const [cost, setCost] = useState('')
 const [MDate, setMDate] = useState('')
 const [EDate, setEDate] = useState('')
 const [usedFor, setUsedFor] = useState('')
+
+const [manufacturer, setManufacturer] = useState('')
 
 const { chainId: chainIdHex } = useMoralis()
 
@@ -29,12 +31,47 @@ const {
     abi: abi,
     contractAddress: medixAddress,
     functionName: "addMedicine",
-    // params: {args},
+    params: {
+      _id: manufacturer,
+      _name: medicineName,
+      _cost: cost,
+      _m_date: MDate,
+      _e_date: EDate
+    }
 })
 
-async function updateUIValues() {
-  
+const {
+  runContractFunction: getManufacturer,
+} = useWeb3Contract({
+  abi: abi,
+  contractAddress: medixAddress,
+  functionName: "getManufacturer",
+  params: {}
+})
+
+const {
+  runContractFunction: checkVendor,
+} = useWeb3Contract({
+  abi:abi,
+  contractAddress: medixAddress,
+  functionName: "checkVendor",
+  params: {
+    _vendor: manufacturer
+  }
+})
+
+async function getOnChain() {
+  const _manufacturer = (await getManufacturer()).toString()
+  setManufacturer(_manufacturer)
+  console.log(manufacturer)
+
+  const name = (await checkVendor(manufacturer))
+  console.log(name)
 }
+
+useEffect(() => {
+  getOnChain()
+}, [manufacturer])
 
 const handleNewNotification = () => {
   dispatch({
@@ -49,7 +86,7 @@ const handleNewNotification = () => {
 const handleSuccess = async (tx) => {
   try {
     await tx.wait(1)
-    updateUIValues()
+    // updateUIValues()
     handleNewNotification(tx)
   } catch (error) {
     console.log(error)
@@ -60,7 +97,7 @@ const handleSuccess = async (tx) => {
     <div className="container-fluid bg-skyblue p-5">
       <div className="container">
         <h1 className="text-center mb-4 text-white">Add Medicine</h1>
-        <form>
+        {/* <form> */}
           <div className="mb-3">
             <label htmlFor="medicineName" className="form-label text-white">Medicine Name:</label>
             <input type="text" className="form-control" id="medicineName" name="medicineName" value={medicineName} onChange={(e) => setMedicineName(e.target.value)} />
@@ -87,18 +124,18 @@ const handleSuccess = async (tx) => {
           <div className="text-center">
             <button
               onClick={async () => {
-                await addMedicine({
-                  args: [medicineName, cost, MDate, EDate, "Karachi"],
-                    onSuccess: handleSuccess,
-                    onError: (error) => {
-                        console.log(error)
-                        console.log(medixAddress)
-                    }
-                })
-              }}
+                try {
+                    const result = await addMedicine()
+                    console.log("After addMedicine, Result:", result);
+                    handleSuccess(result);
+                } catch (error) {
+                    console.log(error);
+                    console.log(medixAddress);
+                }
+            }}
             className="btn btn-primary">Add Medicine</button>
           </div>
-        </form>
+        {/* </form> */}
       </div>
     </div>
   );

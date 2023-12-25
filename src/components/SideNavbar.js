@@ -1,7 +1,7 @@
 // SideNavbar.js
 import React, { useState } from 'react';
 // import 'bootstrap/dist/css/bootstrap.min.css';
-import './styles/SideNavbar.css'; // Create a separate CSS file for styling
+import './styles/SideNavbar.css';
 import Manufacturer from './Manufacturer';
 import logo from './images/medixLogo.jpeg';
 import Connect from './ConnectButton';
