@@ -53,8 +53,9 @@ function SupplyChain() {
               onChange={(e) => setMedHash(e.target.value)}
             />
             <button
-              className="btn btn-primary"
               onClick={fetchData}
+              type='submit'
+              className='btn btn-primary fancy-button'
             >
               Check
             </button>

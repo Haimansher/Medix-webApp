@@ -34,7 +34,8 @@ const {
       _name: medicineName,
       _cost: cost,
       _m_date: MDate,
-      _e_date: EDate
+      quanity: 50,
+      _e_date: EDate,
     }
 })
 
@@ -133,7 +134,9 @@ const handleSuccess = async (tx) => {
                     console.log(medixAddress);
                 }
             }}
-            className="btn btn-primary">Add Medicine</button>
+            type='submit'
+            className='btn btn-primary fancy-button'
+            >Add Medicine</button>
           </div>
         {/* </form> */}
       </div>

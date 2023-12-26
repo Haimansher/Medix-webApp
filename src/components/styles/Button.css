@@ -1,0 +1,33 @@
+.fancy-button {
+    background: linear-gradient(to right, #4facfe, #00f2fe);
+    border-color: #4facfe;
+    transition: all 0.3s ease-in-out;
+  }
+  
+  .fancy-button:hover {
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
+    transform: scale(1.05);
+  }
+  
+  .fancy-button-reject {
+    background: linear-gradient(to right, #fe4f4f, #fe0000);
+    border-color: #fe4f4f;
+    transition: all 0.3s ease-in-out;
+  }
+  
+  .fancy-button-reject:hover {
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
+    transform: scale(1.05);
+  }
+  
+  .fancy-button-deliver {
+    background: linear-gradient(to right, #4ffe70, #00fe30);
+    border-color: #4fde70;
+    transition: all 0.3s ease-in-out;
+  }
+  
+  .fancy-button-deliver:hover {
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
+    transform: scale(1.05);
+  }
+  
