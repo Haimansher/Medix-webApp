@@ -5,8 +5,7 @@ import { contractAddress, abi } from '../constants/index'
 
 function DeliverManfacturer() {
 
-  const [ _id, setId ] = useState(0);
-
+  var _id=0;
   const { chainId: chainIdHex } = useMoralis()
 
   const chainId = parseInt(chainIdHex)
@@ -19,6 +18,7 @@ function DeliverManfacturer() {
   const [name , setName] = useState([])
   const [quantity, setQuantity] = useState([])
   const [price, setPrice] = useState([])
+  const [medHash, setMedhash] = useState([])
 
   const {
     runContractFunction: getTotalOrders,
@@ -40,44 +40,79 @@ function DeliverManfacturer() {
     }
   })
 
-  const fetchNumber = async () => {
-    const number = await getTotalOrders()
-    if(number){
-      setOrderNumber(Number(number.toString()))
-    }
-    console.log(number)
-    console.log(orderNumber)
-    // fetchOrders()
-  }
-
-  useEffect(() => {
-    fetchNumber();
-  }, []);
-  
   const fetchOrders = async () => {
-    for (let i = 0; i < orderNumber; i++) {
-      setOrderId(i)
-      const result = await getOrders({
-        id: i
+    try {
+      const orders = [];
+  
+      const fetchPromises = Array.from({ length: orderNumber }, async (_, i) => {
+
+        const result = await getOrders({id: i});
+        console.log(result[1].toString())
+        if (result) {
+          _id++;
+          orders.push({
+            id: i,
+            name: result[0].toString() || "DefaultName",
+            quantity: result[1].toString() || "DefaultQuantity",
+            price: result[2].toString() || "DefaultPrice",
+            medHash: result[3].toString()
+          });
+        }
       });
-      if (result) {
-        setOrderId((prev) => [...prev, i]);
-        setName((prev) => [...prev, result[0]]);
-        setQuantity((prev) => [...prev, result[1]]);
-        setPrice((prev) => [...prev, result[2]]);
-      }
+  
+      await Promise.all(fetchPromises);
+  
+      setOrderId(orders.map((order) => order.id))
+      setName(orders.map((order) => order.name))
+      setQuantity(orders.map((order) => order.quantity))
+      setPrice(orders.map((order) => order.price))
+      setMedhash(orders.map((order) => order.medHash))
+  
+    } catch (error) {
+      console.error("Error fetching orders:", error);
     }
   };
+    
+
+  useEffect(() => {
+    const fetchNumber = async () => {
+      try {
+        const number = await getTotalOrders();
+  
+        if (number) {
+          setOrderNumber(number.toString());
+        }
+  
+      } catch (error) {
+        console.error("Error fetching total orders:", error);
+      }
+    };
+  
+    fetchNumber();  // Invoke fetchNumber directly
+  
+  }, [getTotalOrders, setOrderNumber, orderNumber, fetchOrders]);  // Include fetchOrders in the dependency array
+  
+
+  
+  useEffect(() => {
+    // Trigger fetchOrders when orderNumber changes
+    fetchOrders();
+  }, [orderNumber]);
 
   return (
     <div className='container'>
       <h1 className='text-white text-center'>Available Orders</h1>
       {orderId.map((id, index) => (
-        <DeliverBox key={id} name={name[index]} quantity={quantity[index]} price={price[index]} />
-      ))}
+  <DeliverBox
+    key={index} 
+    index={index} // Use index as the key
+    name={name[index]}  // Pass the specific value corresponding to the index
+    quantity={quantity[index]}
+    price={price[index]}
+    medHash={medHash[index]}
+  />
+))}
 
-      <DeliverBox />
-      <DeliverBox />
     </div>
   )
 }

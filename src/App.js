@@ -1,9 +1,9 @@
 // import logo from './logo.svg';
-// import './App.css';
+import './App.css';
 import { MoralisProvider } from 'react-moralis';
 import { NotificationProvider } from 'web3uikit'
-import SideNavbar from './components/SideNavbar';
-// import Manufacturer from './components/Manufacturer';
+import Navbar from './components/Navbar';
+import Manufacturer from './components/Manufacturer';
 import AddMedicine from './components/AddMedicine';
 import SupplyChain from './components/SupplyChain';
 import VendorOrder from './components/VendorOrder';
@@ -14,8 +14,8 @@ function App() {
     <>
     <MoralisProvider initializeOnMount={false}>
     <NotificationProvider>
-      <SideNavbar />
-      {/* <Manufacturer /> */}
+      <Navbar />
+      <Manufacturer />
       <AddMedicine />
       <SupplyChain />
       <VendorOrder />
