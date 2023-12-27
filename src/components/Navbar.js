@@ -3,13 +3,14 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import Connect from './ConnectButton';
 import { MoralisProvider } from 'react-moralis';
+import logo from './images/medixLogo.jpeg'
 
 function Navbar() {
   return (
-    <nav className="navbar navbar-expand-lg fixed-top" style={{ backgroundColor: '#2c3e50', color: '#ecf0f1' }}>
+    <nav className="navbar navbar-expand-lg fixed-top" style={{ backgroundColor: '#275478' }}>
       <div className="container-fluid">
-        <Link className="navbar-brand" to="/" style={{ color: '#3498db', fontSize: '24px', fontWeight: 'bold' }}>
-          Medix
+        <Link className="navbar-brand d-flex align-items-center" to="/" style={{ color: '#ecf0f1', fontSize: '24px', fontWeight: 'bold' }}>
+          <img src={logo} alt="Logo" style={{ marginRight: '5px', height: '40px', borderRadius: '50%', boxShadow: '0 0 10px rgba(255, 255, 255, 0.5)' }} /> Medix
         </Link>
         <button
           className="navbar-toggler"
@@ -20,12 +21,12 @@ function Navbar() {
           aria-expanded="false"
           aria-label="Toggle navigation"
         >
-          <span className="navbar-toggler-icon" style={{ color: '#e74c3c' }}></span>
+          <span className="navbar-toggler-icon" style={{ color: 'white' }}></span>
         </button>
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <ul className="navbar-nav me-auto mb-2 mb-lg-0">
             <li className="nav-item">
-              <Link className="nav-link active" aria-current="page" to="/" style={{ color: '#3498db' }}>
+              <Link className="nav-link active" aria-current="page" to="/" style={{ color: 'white' }}>
                 Home
               </Link>
             </li>
@@ -36,7 +37,7 @@ function Navbar() {
                 role="button"
                 data-bs-toggle="dropdown"
                 aria-expanded="false"
-                style={{ color: '#3498db' }}
+                style={{ color: 'white' }}
               >
                 Manufacturer
               </Link>
@@ -68,7 +69,7 @@ function Navbar() {
                 role="button"
                 data-bs-toggle="dropdown"
                 aria-expanded="false"
-                style={{ color: '#3498db' }}
+                style={{ color: 'white' }}
               >
                 Vendor
               </Link>

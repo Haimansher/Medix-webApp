@@ -1,3 +1,4 @@
+import './styles/DeliverBox.css'
 import React, { useState } from 'react';
 import { Modal, Button } from 'react-bootstrap';
 import { useMoralis, useWeb3Contract } from 'react-moralis';
@@ -18,18 +19,6 @@ function DeliverBox(props) {
   const handleCloseRejectConfirmation = () => setShowRejectConfirmation(false);
 
   const [orderStatus, setOrderStatus] = useState([0]);
-
-  const {
-    runContractFunction: registorVendor
-  } = useWeb3Contract({
-    abi: abi,
-    contractAddress: medixAddress,
-    functionName: "registorVendor",
-    params: {
-      _vendor: "0xdD2FD4581271e230360230F9337D5c0430Bf44C0",
-      _name: "Lahore"
-    }
-  });
 
   const {
     runContractFunction: deliver
@@ -57,7 +46,6 @@ function DeliverBox(props) {
   const confirmDelivery = async () => {
     handleCloseDeliveryConfirmation();
     try {
-      await registorVendor();
       await deliver();
       setOrderStatus((prev) => [...prev, 1]);
     } catch (error) {
