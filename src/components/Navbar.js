@@ -9,7 +9,7 @@ function Navbar() {
     <nav className="navbar navbar-expand-lg fixed-top" style={{ backgroundColor: '#2c3e50', color: '#ecf0f1' }}>
       <div className="container-fluid">
         <Link className="navbar-brand" to="/" style={{ color: '#3498db', fontSize: '24px', fontWeight: 'bold' }}>
-          Navbar
+          Medix
         </Link>
         <button
           className="navbar-toggler"
